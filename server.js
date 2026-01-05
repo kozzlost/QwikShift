@@ -1,6 +1,5 @@
 /**
- * ZipShift Backend Server
- * 
+ * QwikShift Backend Server * 
  * Main entry point for the Express.js backend server.
  * Handles API routing, database connections, and middleware setup.
  * 
@@ -48,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 const connectDB = async () => {
     try {
-          const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017/zipshift';
+          const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017/qwikshift';
 
       await mongoose.connect(mongoURL, {
               useNewUrlParser: true,
