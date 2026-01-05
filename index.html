@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZipShift - Find Event Staff in 24 Hours</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid white;
+        }
+        
+        /* PROBLEM SECTION */
+        .problem {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .problem-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .problem-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* SOLUTION SECTION */
+        .solution {
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .solution-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .solution-text p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            font-size: 16px;
+            color: #333;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .solution-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        /* HOW IT WORKS */
+        .how-it-works {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* PRICING */
+        .pricing {
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        
+        .pricing-card.featured {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            border-radius: 8px;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* FORM */
+        .form-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .section-title { font-size: 28px; }
+            .solution-content { grid-template-columns: 1fr; }
+            .solution-image { height: 250px; }
+            .hero { padding: 60px 20px; }
+            .pricing-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav style="background: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="color: #667eea; font-size: 24px; margin: 0;">⚡ ZipShift</h2>
+        <div>
+            <a href="#employers" style="color: #333; text-decoration: none; margin: 0 20px; font-weight: 500;">For Employers</a>
+            <a href="#form" class="cta-button" style="margin: 0;">Early Access</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>Find Event Staff in 24 Hours</h1>
+        <p>Stop spending weeks recruiting. Post a job, get qualified local workers applying instantly.</p>
+        <a href="#form" class="cta-button">Get Early Access</a>
+        <a href="#form" class="cta-button cta-secondary">See Demo</a>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+    <div class="container">
+        <h2 class="section-title">The Problem</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>⏰ Slow</h3>
+                <p>Traditional staffing takes 2-3 weeks. Your event is next week.</p>
+            </div>
+            <div class="problem-card">
+                <h3>💸 Expensive</h3>
+                <p>Staffing agencies charge 20-30% fees. That's thousands per event.</p>
+            </div>
+            <div class="problem-card">
+                <h3>😞 Unreliable</h3>
+                <p>You still might have open positions on event day. Or no-shows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution">
+    <div class="container">
+        <div class="solution-content">
+            <div class="solution-text">
+                <h2>Meet ZipShift</h2>
+                <p>We built a mobile-first platform that connects event organizers with vetted, local workers—in real-time.</p>
+                
+                <ul class="feature-list">
+                    <li><strong>Post in minutes</strong> - Describe your event, set pay, post</li>
+                    <li><strong>Get matches in 24 hours</strong> - Workers nearby see your job instantly</li>
+                    <li><strong>Save 40-60%</strong> - Only 10% commission (vs. 20-30% agencies)</li>
+                    <li><strong>Rated workers</strong> - See reviews before you hire</li>
+                    <li><strong>Simple payments</strong> - Pay workers directly through app</li>
+                </ul>
+                
+                <a href="#form" class="cta-button">Try ZipShift Free</a>
+            </div>
+            <div class="solution-image">
+                📱 Mobile App Interface<br><br>Workers swiping through available jobs
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="employers">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Post</h3>
+                <p>Post your event job (title, pay, location, date)</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Match</h3>
+                <p>Local workers see your job & apply within 24 hours</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Confirm</h3>
+                <p>Chat with workers, confirm details, finalize hire</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Pay</h3>
+                <p>Pay workers directly through app after job complete</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+    <div class="container">
+        <h2 class="section-title">Simple Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <p class="price-period">For freelancers & small teams</p>
+                <p style="color: #666; font-size: 14px; margin: 20px 0;">Only pay when you hire</p>
+                <div class="price">10%</div>
+                <p class="price-period">Commission per placement</p>
+                <ul class="pricing-features">
+                    <li>✓ Unlimited job posts</li>
+                    <li>✓ See worker profiles & ratings</li>
+                    <li>✓ In-app messaging</li>
+                    <li>✓ Payment processing</li>
+                </ul>
+                <a href="#form" class="cta-button">Start Free</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <h3>Pro</h3>
+                <p class="price-period">For event companies & agencies</p>
+                <div class="price">$200</div>
+                <p class="price-period">per month (billed annually)</p>
+                <ul class="pricing-features">
+                    <li>✓ Everything in Basic</li>
+                    <li>✓ Featured job listings</li>
+                    <li>✓ Advanced analytics</li>
+                    <li>✓ Priority matching</li>
+                    <li>✓ Bulk discounts (20+ placements)</li>
+                </ul>
+                <a href="#form" class="cta-button">Try Pro Free 30 Days</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <p class="price-period">For large organizations</p>
+                <p style="color: #666; font-size: 14px; margin: 20px 0;">Custom pricing</p>
+                <div class="price">Custom</div>
+                <ul class="pricing-features">
+                    <li>✓ Everything in Pro</li>
+                    <li>✓ API access</li>
+                    <li>✓ Dedicated account manager</li>
+                    <li>✓ Custom integrations</li>
+                </ul>
+                <a href="#form" class="cta-button">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOCIAL PROOF (FUTURE) -->
+<section style="padding: 80px 20px; background: #f8f9fa; margin-bottom: 60px;">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">What Early Users Say</h2>
+        <div class="problem-grid">
+            <div class="problem-card" style="text-align: left;">
+                <p style="font-style: italic; color: #666; margin-bottom: 15px;">"Filled 50 positions in 3 days. Would've taken weeks with traditional staffing."</p>
+                <p style="font-weight: 600;">— Sarah, Event Planner</p>
+            </div>
+            <div class="problem-card" style="text-align: left;">
+                <p style="font-style: italic; color: #666; margin-bottom: 15px;">"10% vs. 25%? Easy choice. And workers are higher quality."</p>
+                <p style="font-weight: 600;">— Mike, Conference Director</p>
+            </div>
+            <div class="problem-card" style="text-align: left;">
+                <p style="font-style: italic; color: #666; margin-bottom: 15px;">"Best hiring platform I've used. Period."</p>
+                <p style="font-weight: 600;">— Jessica, Wedding Planner</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to Fill Your Next Event?</h2>
+        <p>Join early adopters getting workers in 24 hours.</p>
+        <a href="#form" class="cta-button">Get Early Access</a>
+    </div>
+</section>
+
+<!-- FORM -->
+<section id="form">
+    <div class="container">
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 10px;">Join the ZipShift Beta</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">Be first to fill events faster and cheaper</p>
+            
+            <form name="zipshift-beta" method="POST" netlify>
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="type">What type of events? *</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select...</option>
+                        <option value="conferences">Conferences & Conventions</option>
+                        <option value="weddings">Weddings</option>
+                        <option value="concerts">Concerts & Music Events</option>
+                        <option value="corporate">Corporate Events</option>
+                        <option value="festivals">Festivals & Outdoor Events</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hiring">How many workers do you typically hire per event? *</label>
+                    <select id="hiring" name="hiring" required>
+                        <option value="">Select...</option>
+                        <option value="1-10">1-10</option>
+                        <option value="10-25">10-25</option>
+                        <option value="25-50">25-50</option>
+                        <option value="50+">50+</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="cta-button" style="width: 100%; padding: 14px; cursor: pointer; font-size: 16px;">Get Early Access</button>
+                
+                <p style="text-align: center; color: #999; font-size: 12px; margin-top: 15px;">We'll email you next week with access. No spam, ever.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 ZipShift. All rights reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="mailto:hello@zipshift.app">Contact</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
